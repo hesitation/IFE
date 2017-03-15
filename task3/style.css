@@ -1,0 +1,50 @@
+/* reset */
+header, main, article, aside, h2, h4, ul, li, p {
+	padding: 0;
+	margin: 0;
+}
+li {
+	list-style-type: none;
+}
+img {
+	vertical-align: middle;
+}
+/* 所有元素设置为border-box */
+* {
+	box-sizing: inherit;
+}
+html {
+	box-sizing: border-box;
+}
+
+.panel {
+	padding: 20px;
+	border: 1px solid #999;
+	background: #eee;
+	overflow: hidden;   /* 生成包裹BFC，计算高度时包括浮动元素 */
+}
+
+.panel__item {
+	background: #fff;
+}
+
+.panel__item--left {
+	float: left;
+	width: 200px;
+	margin-left: 0;
+}
+.panel__item--right {
+	float: right;
+	width: 120px;
+}
+.panel__item--middle {
+	margin: 0 140px 0 220px;
+}
+
+.clearfix::before {
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
