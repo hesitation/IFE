@@ -1,0 +1,50 @@
+<!-- 使用flex布局，容器宽高可变 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.wrap {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			width: 100vw;
+		}
+		.rect {
+			position: relative;
+			overflow: hidden;
+			width: 400px;
+			height: 200px;
+			background: #ccc;
+		}
+		.circle {
+			width: 100px;
+			height: 100px;
+			background: #fc0;
+		}
+		.circle1 {
+			position: absolute;
+			left: -50px;
+			top: -50px;
+			border-radius: 0 0 50px 0;   /* 保留右下角 */
+		}
+		.circle2 {
+			position: absolute;
+			bottom: -50px;
+			right: -50px;
+			border-radius: 50px 0 0 0;    /* 保留左上角 */
+		}
+	</style>
+</head>
+<body>
+	<!-- 总体思路：利用绝对定位偏移父元素宽度50%的偏移量，再利用负值margin往回偏移自身宽度的50% -->
+	<div class="wrap">
+		<div class="rect">
+			<div class="circle circle1"></div>
+			<div class="circle circle2"></div>
+		</div>
+	</div>
+</body>
+</html>
