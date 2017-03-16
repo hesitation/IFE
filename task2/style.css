@@ -1,0 +1,115 @@
+body, header, article, section, nav, figure, aside, h1 {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+body {background: #ccc;}
+.clearfix::after {
+	content:  "";
+	display: block;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+.header {
+	background: #333;
+	height: 4em;
+	line-height: 4em;
+}
+
+.header h1 {
+	float: left;
+	color: #fff;
+	padding-left: 40px;
+}
+.header nav {
+	float: right;
+}
+.header nav ul {
+	margin: 0;
+}
+.header nav li {
+	float: left;
+	margin-right: 25px;
+	list-style: none;
+}
+.header nav li:hover {
+	border-bottom: 3px solid coral;
+	background: rgba(0,0,0,0.4);
+	border-radius: 3px;
+}
+.header a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.header .activeNav {color: #999;}
+
+
+.article {
+	border: 1px solid #999;
+	box-shadow: 2px 2px 2px 0 #666;
+	margin: 20px 20px 0;
+	padding: 20px;
+	background: #fff;
+}
+.article .pagraph {
+	text-indent: 2em;
+	line-height: 1.8;
+}
+.article h3, .article span {color: #888;}
+.article .listItem {
+	list-style: none;
+}
+
+.image {
+	border: 1px solid #ccc;
+	padding: 20px;
+	width: 330px;
+	margin-bottom: 20px;
+}
+.image img {
+	vertical-align: middle;
+}
+.image figcaption {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+
+.form {
+	padding: 20px;
+}
+.form h2 {
+	margin: 0;
+	padding: 7px;
+	border-left: 3px solid #777;
+}
+.form .tips {
+	width: 35%;
+	float: left;
+	text-align: right;
+	margin-right: 20px;
+}
+.form .notice {
+	margin-left: 35%;
+	padding-left: 20px;
+	color: #999;
+}
+.form .mulInput {
+	resize: none;
+	border-radius: 2px;
+}
+.form .submitBtn {
+	width: 100%;
+	background: lightblue;
+	height: 3em;
+	border-radius: 5px;
+	border-style: none;
+	color: #fff;
+	font-weight: bold;
+	letter-spacing: 0.5em;
+}
