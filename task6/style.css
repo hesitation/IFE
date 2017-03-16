@@ -1,0 +1,381 @@
+/* @charset 'utf-8' */
+/* reset */
+* {box-sizing: inherit;}
+html {box-sizing: border-box;}
+body, h2, h3, p, header, main, article, section {
+	margin: 0;
+	padding: 0;
+	font-family: "YaHei";
+}
+a {text-decoration: none; cursor: default;}
+a:hover {text-decoration: none;}
+img {border: 0;}
+body {background: #ccc; } 
+.clearfix::after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+/* wrap-box */
+.wrap-box {width: 980px; height: 1386px; margin: 0 auto; background: #fff; padding: 0 44px; overflow: hidden;}
+
+/* header */
+.top {
+	position: relative;
+	height: 63px;
+	font-size: 12px;
+	border-bottom: 2px solid #938e8c;
+	overflow: hidden;
+	margin-bottom: 34px;      /* 与下个部分的垂直间距 */
+}
+.top-logo {
+	background: #c66;
+	height: 61px;
+	width: 110px;
+}
+.top-logo a {
+	position: absolute;
+	left: 7px;
+	bottom: 6px;
+	color: #fff;
+	font-family: "黑体";
+}
+.top-date {
+	position: absolute;
+	right: 1px;
+	bottom:  6px;
+	font-family: "黑体";
+	color: #d45d5c;
+}
+
+/* 第二个部分 */
+.nav {
+	height: 301px;
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 41px;
+
+}
+.nav-logo {
+	position: absolute;
+	left: 0;
+	top:  0;
+}
+.nav-logo img {vertical-align: middle;}     /* 行内元素img以middle线对齐，去掉下部留白 */
+.nav-logo::before {    /* 利用伪元素实现蒙层 */
+	content: "";
+	display: block;
+	width: 191px;
+	height: 301px;
+	background: #9c9 ;
+	opacity: 0.3;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.nav-logo::after {      /* 利用伪元素实现蒙层 */
+	content: "";
+	display: block;
+	width: 191px;
+	height: 301px;
+	background: #fac ;
+	opacity: 0.3;
+
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.nav-explain {          
+	position: absolute;
+	right: 2px;
+	top: 0;
+	width: 203px;
+	border-top: 2px solid #cc8091;
+}
+.nav-explain a {
+	cursor: pointer;
+	font-size: 24px;
+	color:  #000;
+	border-bottom: 2px solid #000;
+}
+.nav-explain :nth-child(3) {
+	padding-top: 4px;
+	font-size: 12px;
+	font-family: "楷体";
+	line-height: 12px;
+	color: #676767;
+}
+.nav-explain :nth-child(4) {
+	font-size: 116px;
+	line-height: 140px;
+	color: #75b86b;
+	font-style: italic;
+	margin-left: -30px;
+}
+.nav-explain :nth-child(5) {
+	color: #cc8091;
+	height: 72px;
+	position: relative;
+}
+.nav-explain--text1 {
+	font-size: 55px;
+	position: absolute;
+}
+.nav-explain--text2 {
+	font-size: 21px;
+	position: absolute;
+	left: 80px;
+	bottom: 23px;
+}
+.nav-explain--text3 {
+	font-size: 12px;
+	position: absolute;
+	left: 80px;
+	bottom: 12px;
+}
+
+/* section2 */
+.question {
+	height: 241px;
+	overflow: hidden;
+}
+
+.question section:nth-child(1) {
+	width: 229px;
+	float: left;
+	margin-right: 27px;
+}
+.question section:nth-child(2) {
+	width: 204px;
+	float: left;
+	margin-right: 27px;
+}
+.question section:nth-child(3) {
+	width: 131px;
+	float: left;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+.title--first {
+	color:  #418c59;
+}
+.title--second {
+	color:  #d2994f;
+}
+.title--third {
+	color:  #cc7680;
+}
+.content {
+	font-size: 12px;
+	color: #767777;
+	opacity: 0.7;
+	line-height: 16px;
+}
+.content span {
+	color:  #cc7680;
+	font-style: italic;
+}
+
+/* section3 */
+.show {
+	padding-bottom: 39px;
+	border-bottom: 1px solid #938e8c;
+}
+.show-item--left {
+	width: 415px;
+	overflow: hidden;
+}
+/* left */
+.show-item--left header {
+	font-weight: bold;
+	border-bottom: 2px solid #000;
+	color: #11456b;
+	margin-bottom: 25px;
+}
+.show-item--left header h2:first-child {
+	font-size: 42px;
+	font-family: "SimHei";
+	line-height: 53px;
+}
+.show-item--left header h2:nth-child(2) {
+	font-size: 33px;
+	font-family: "SimHei";
+	vertical-align: bottom;
+}
+.show-item--left header span {
+	font-size: 72px;
+	color: #f5e327;
+	font-style: italic;
+}
+.show-item--left main img {
+	float: right;
+	padding: 20px;
+}
+.show-item--left main p {
+	text-indent: 2em;
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 18px;
+	vertical-align: middle;
+}
+.show-item--left main p:first-child {
+	text-indent: 0;
+}
+.show-item--left main span {
+	font-size: 70px;
+	line-height: 70px;
+	color: #f5e327;
+	float: left;
+	font-family: "YaHei";
+}
+
+/* right */
+.show-item--right {
+	float: right;
+	width: 458px;
+}
+.show-item--right header {
+	position: relative;
+	height: 257px;
+	margin-bottom: 30px;
+	background: url(img/02.png);
+}
+.show-item--right header .mask {
+
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 61px;
+	background: rgba(0, 0, 0, 0.3);
+}
+.show-item--right header .mask p {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0 auto 38px;
+	padding-left: 12px;
+	color:  #fff;
+	font-size: 26px;
+	font-weight: bold;
+	height: 44px;
+	line-height: 44px;
+	border-left: 3px solid #72b36a;
+}
+.show-item--right header .mask span {
+	padding-left: 8px;
+	font-size: 12px;
+	font-style: italic;
+	color: #72b16a;
+}
+
+.show-item--right main {
+	position: relative;
+	height: 318px;
+	background: #ffc;
+	padding: 32px 20px 0 32px;
+}
+.show-item--right main .triangle::before {   /* 三角形 */
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-width: 10px 5px;
+	border-style: solid;
+	border-color: transparent;
+	border-bottom-color: #000;
+	margin-right: 7px;
+}
+.show-item--right main .triangle {
+	position: relative;
+	font-family: "宋体";
+	font-size: 16px;
+	line-height: 23px;
+	margin-bottom: 20px;
+}
+.show-item--right main .triangle span {
+	font-size: 12px;
+	font-style: italic;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.show-item--right main .show-layer {
+	width: 260px;
+	height: 160px;
+	background: #c66;
+	color:  #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.show-item--right main .show-layer > :nth-child(1) {
+	font-size: 110px;
+	float: left;
+	padding: 7px 8px 0;
+}
+.show-item--right main .show-layer > :nth-child(2) {
+	font-size: 18px;
+	font-style: italic;
+	height: 86px;
+	font-family: "黑体";
+	margin-top: 37px;
+	overflow: hidden;
+	border-left: 3px solid #fff;
+	padding-left: 9px;
+}
+.show-item--right main .show-layer > :nth-child(2) p:last-child {
+	font-style: normal;
+	font-size: 12px;
+	font-family: "黑体";
+	height: 12px;
+}
+
+
+
+
+
+.show-item--right main > :nth-child(3) {
+	width: 162px;
+	position: absolute;
+	right: 20px;
+	font-size: 14px;
+	font-family: "黑体";
+	font-style: italic;
+	line-height: 16px;
+}
+.show-item--right main .colma1 {
+	float: left;
+	font-size: 72px;
+	height: 0;
+	color: #d45d5c;
+	font-style: normal;
+	margin-top: 16px;
+	margin-left: -36px;
+}
+.show-item--right main .colma2 {
+	float: right;
+	font-size: 72px;
+	color: #d45d5c;
+	font-style: normal;
+	margin-right: -36px;
+	margin-top: 30px;
+}
+
+/* footer */
+footer span {
+	float: right;
+	font-family: "黑体";
+	color: #d45d5c;
+	font-size: 12px;
+}
