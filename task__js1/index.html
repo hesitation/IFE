@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<label>今天成都的天气质量：<input type="text"></label>
+	<button id="btn">确认</button>
+
+	<div>您的输入值是：<span id="api-display">尚无录入</span></div>
+
+	<script>
+			var oBtn = document.getElementById('btn');
+			var showMsg = document.getElementById('api-display');
+
+			oBtn.addEventListener('click', function () {
+				var oInput = document.getElementsByTagName('input')[0];
+				if(oInput) {
+					showMsg.innerHTML = oInput.value;   // innerHTML操作元素值的接口
+					oInput.value = '';     // 点击后清空内容
+				}
+
+			}, false);
+		
+	</script>
+</body>
+</html>
