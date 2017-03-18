@@ -1,0 +1,63 @@
+<!-- 整体思路：容器左右padding: 20px; 主轴方向两端对其 -->
+<!-- media query时，折行wrap，并且通过子元素的order属性指定排列顺序，值大的排在后面 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {margin: 0; padding: 0;}
+		* {box-sizing: border-box;}
+		.item {
+			width: 150px;
+			border:  1px solid #f00;
+			margin-bottom: 20px;
+		}
+		.item-1 {
+			height: 120px;
+		}
+		.item-2 {
+			height: 100px;
+		}
+		.item-3 {
+			height: 40px;
+		}
+		.item-4 {
+			height: 200px;
+			border-color: #00f;
+		}
+
+		.container {
+			display: flex;
+			padding: 20px;
+		}
+		/* 大于640px的样式 */
+		@media screen and (min-width: 640px) {
+			.container {
+				flex-flow: row nowrap;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+		/* 小于640px时，指定子元素的order属性，指定排列顺序 */
+		@media screen and (max-width: 640px) {
+			.container {
+				flex-flow: row wrap;
+				align-items: flex-start;
+				justify-content: space-between;
+			}
+			.item-4 {
+				order: -1;  /* 值最小的排在最前面，默认值是0 */
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item item-1"></div>
+		<div class="item item-2"></div>
+		<div class="item item-3"></div>
+		<div class="item item-4"></div>
+	</div>
+</body>
+</html>
