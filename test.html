@@ -3,13 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style>
-		.main {overflow: hidden; width: 60%; background: green; height: 500px;}
-		.aside {float: right; width: 400px; background: coral; height: 500px;}
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* 总体思路：radio有选中前和选中两个状态，使用:checked伪类可以捕获选中状态; */
+/* 关闭浏览器默认样式；选中前做一个空心圆；选中后中间一个实心点的圆 */
+/* 空心圆用圆角、背景色、阴影实现 */
+/* 使用border-box */
+	input {box-sizing: border-box;}
+	input[type='radio'] {
+		-webkit-appearance: none;  /* 去掉浏览器控件（radio、checkbox、select等）的默认样式 */
+		width: 20px;
+		height: 20px;
+		background-color: #fff;
+		box-shadow: 0 0 5px #555;   /* 阴影是未选中状态的空心圆边线 */
+		border-radius: 50%;
+		outline: 0;                   /* chrome自带的outline去掉 */
+	}
+	input[type='radio']:checked {
+		border: 5px solid #fff;
+		border-radius: 50%;
+		background: #999;
+	}
+	
+</style>
 </head>
 <body>
-	<div class="aside"></div>
-	<div class="main"></div>
+	<label for="radio1">男</label>
+	<input type="radio" id="radio1" name="sex">
+
+	<label for="radio2">女</label>
+	<input type="radio" id="radio2" name="sex">
 </body>
 </html>

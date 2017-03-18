@@ -46,6 +46,19 @@ p{margin: 0;}
 	.col-md-10 {width: 83.33%;}
 	.col-md-11 {width: 91.66%;}
 	.col-md-12 {width: 100%;}
+	/* 偏移offset */
+	.col-md-offset-1 {margin-left: 8.33%;}
+	.col-md-offset-2 {margin-left: 16.66%;}
+	.col-md-offset-3 {margin-left: 25%;}
+	.col-md-offset-4 {margin-left: 33.33%;}
+	.col-md-offset-5 {margin-left: 41.66%;}
+	.col-md-offset-6 {margin-left: 50%;}
+	.col-md-offset-7 {margin-left: 58.33%;}
+	.col-md-offset-8 {margin-left: 66.66%;}
+	.col-md-offset-9 {margin-left: 75%;}
+	.col-md-offset-10 {margin-left: 83.33%;}
+	.col-md-offset-11 {margin-left: 91.66%;}
+	.col-md-offset-12 {margin-left: 100%;}
 }
 
 
@@ -65,6 +78,19 @@ p{margin: 0;}
 	.col-sm-10 {width: 83.33%;}
 	.col-sm-11 {width: 91.66%;}
 	.col-sm-12 {width: 100%;}
+	/* 偏移offset */
+	.col-sm-offset-1 {margin-left: 8.33%;}
+	.col-sm-offset-2 {margin-left: 16.66%;}
+	.col-sm-offset-3 {margin-left: 25%;}
+	.col-sm-offset-4 {margin-left: 33.33%;}
+	.col-sm-offset-5 {margin-left: 41.66%;}
+	.col-sm-offset-6 {margin-left: 50%;}
+	.col-sm-offset-7 {margin-left: 58.33%;}
+	.col-sm-offset-8 {margin-left: 66.66%;}
+	.col-sm-offset-9 {margin-left: 75%;}
+	.col-sm-offset-10 {margin-left: 83.33%;}
+	.col-sm-offset-11 {margin-left: 91.66%;}
+	.col-sm-offset-12 {margin-left: 100%;}
 }
 
 /* ------------------------------------------------------------ */
@@ -76,3 +102,17 @@ p{margin: 0;}
 	color: red;
 	border: 1px solid #999;
 }
+
+/* 网格偏移的实现：思路利用margin */
+.col-sm-offset-1 {width: 8.33%;}
+.col-sm-offset-2 {width: 16.66%;}
+.col-sm-offset-3 {width: 25%;}
+.col-sm-offset-4 {width: 33.33%;}
+.col-sm-offset-5 {width: 41.66%;}
+.col-sm-offset-6 {width: 50%;}
+.col-sm-offset-7 {width: 58.33%;}
+.col-sm-offset-8 {width: 66.66%;}
+.col-sm-offset-9 {width: 75%;}
+.col-sm-offset-10 {width: 83.33%;}
+.col-sm-offset-11 {width: 91.66%;}
+.col-sm-offset-12 {width: 100%;}
