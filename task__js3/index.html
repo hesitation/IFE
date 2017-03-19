@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		<ul id="source">
+			<li>北京空气质量：<b>90</b></li>
+			<li>上海空气质量：<b>70</b></li>
+			<li>天津空气质量：<b>80</b></li>
+			<li>广州空气质量：<b>50</b></li>
+			<li>深圳空气质量：<b>40</b></li>
+			<li>福州空气质量：<b>32</b></li>
+			<li>成都空气质量：<b>90</b></li>
+		</ul>
+
+		<ul id="resort">
+			<!-- 
+			<li>第一名：北京空气质量：<b>90</b></li>
+			<li>第二名：北京空气质量：<b>90</b></li>
+			<li>第三名：北京空气质量：<b>90</b></li>
+			 -->
+		</ul>
+
+		<button id="sort-btn">排序</button>
+		
+		<script>
+			/**
+			 *  获取页面中的数据，以数组的形式返回
+			 * @param  {[type]} argument [description]
+			 * @return {[type]}          [description]
+			 */
+			function getData () {
+				var source = document.getElementById('source');
+				var lists = source.getElementsByTagName('li');
+				// lists[0].innerTxet是字符串，后面处理会用到排序，所以将每个数据拆分为一个数组：城市信息和得分
+				var data = [];   // 保存结果的数组
+
+				Array.from(lists).forEach(function (value) {
+					var str = value.innerText.slice(0, 2);
+					var num = parseInt(value.innerText.slice(-2));  //转化为数字
+					data.push([str, num]);   // 将连个数据组成一个子数组推入保存结果的数组
+				});
+				console.log(data);
+
+				return data;  
+			}
+
+			/**
+			 * 对获取的数组进行排序，返回排序后的数组
+			 * @param  {[type]} argument [description]
+			 * @return {[type]}          [description]
+			 */
+			function sortData (arr) {
+				arr.sort(function (a, b) {
+					return b[1] - a[1];        // 根据子数组的第二项得分来比较
+				})
+
+				return arr;
+			}
+
+			/**
+			 * 将排序后的数组渲染到页面上
+			 * @param  {[type]} sortedData [description]
+			 * @return {[type]}            [description]
+			 */
+			function render (sortedData) {
+				sortedData.forEach(function (value, index) {
+					var des = document.getElementById('resort');
+					var oLi = document.createElement('li');
+					oLi.innerText = "第" + (index + 1) + '名：' + value[0] + '的空气质量：';
+
+					var oB = document.createElement('b');
+					oB.innerText = value[1];
+
+					oLi.appendChild(oB);
+					des.appendChild(oLi);
+				})
+			}
+
+			/**
+			 * 处理所有逻辑的初始函数
+			 * @return {[type]} [description]
+			 */
+			function handler () {
+				var des = document.getElementById('resort');
+				des.innerHTML = '';   //点击前现将其内容清空
+				
+				var data = getData();
+				var sortedData = sortData(data);
+				render(sortedData);
+			}
+
+			function init () {
+
+				document.getElementById('sort-btn').addEventListener('click', handler, false);
+			}
+
+			init();  // 启动函数
+		</script>
+
+</body>
+</html>
