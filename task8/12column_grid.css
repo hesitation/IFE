@@ -104,7 +104,7 @@ p{margin: 0;}
 }
 
 /* 网格偏移的实现：思路利用margin */
-.col-sm-offset-1 {width: 8.33%;}
+/* .col-sm-offset-1 {width: 8.33%;}
 .col-sm-offset-2 {width: 16.66%;}
 .col-sm-offset-3 {width: 25%;}
 .col-sm-offset-4 {width: 33.33%;}
@@ -115,4 +115,4 @@ p{margin: 0;}
 .col-sm-offset-9 {width: 75%;}
 .col-sm-offset-10 {width: 83.33%;}
 .col-sm-offset-11 {width: 91.66%;}
-.col-sm-offset-12 {width: 100%;}
+.col-sm-offset-12 {width: 100%;} */
