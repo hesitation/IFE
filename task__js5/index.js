@@ -102,6 +102,10 @@ window.onload = function () {
 			container.innerHTML = str;
 			// 为每个添加的span元素绑定删除事件
 			addSpanDelEvent();
+		},
+
+		renderSort: function() {    // 将正在排序的连个元素渲染为不同的颜色
+
 		}
 	}
 
@@ -191,7 +195,7 @@ window.onload = function () {
 	// 测试：随机生成10个数
 	function randomTen() {
 		var data = [];
-		for(var i=0; i<10; i++) {
+		for(var i=0; i<60; i++) {
 			var ran = Math.floor(Math.random() * (100 - 10 + 1) + 10);
 			data.push(ran);
 		}
