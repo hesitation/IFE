@@ -1,128 +1,132 @@
 /**
- * 获取输入的数字，并返回
- * @return {[type]} [description]
+ *  整个逻辑是数据抽象的过程：
+ *   1. 将队列当做一个对象，使用数组保存存入队列的内容；
+ *   2. 使用数组执行增加、删除等操作，完成后将数组中的数据渲染到页面上
+ *   3. 每种操作完，都重新渲染一次页面，所有数据更新
+ *   4. 在渲染数据时，为每个元素增加一个当前元素的索引属性，可以根据这个属性值来删除该元素
+ *   5. 没有使用事件代理，事件绑定在所有添加的节点上
  */
-function getNumb (id) {
-	var inputValue = document.getElementById(id);
-	return inputValue.value;
+
+
+// 根据id获取元素
+function $ (id) {
+	return document.getElementById(id); 
 }
 
-/**
- * 创建节点，并添加class
- * @param  {[type]} num [description]
- * @return {[type]}     [description]
- */
-function createEle (num) {
-	var ele = document.createElement('li');
-	ele.className = 'single';
-	ele.innerText = num;
-	return ele;
-}
-
-/**
- * 从左侧插入数字元素，将节点添加到最前面
- * 使用insetBefore(node, index)方法，当index为null时，与appendChild()相同
- * 
- * @param  {[type]} num [description]
- * @return {[type]}     [description]
- */
-function leftIn (parent) {
-	let inputNum = getNumb('inputNum');
-
-	var oChild = createEle(inputNum);
-	// 判断容器内是否有元素
-	var oLi = parent.getElementsByTagName("li");
-
-	if(!oLi.length) {  //判断之前有无内容，在容器为空情况下insertBefore()
-		parent.insertBefore(oChild, null)      // 第二个参数是null，与appendChild()相同
-	} {
-		parent.insertBefore(oChild, oLi[0]);     // 添加到第一个元素之前
-		// alert("insertLeft " + inputNum);   
-	}
-
-	deleteItem(oChild, parent);   // 为每个添加的元素绑定删除事件
-}
-
-/**
- * 从右侧插入数字元素
- * @param  {[type]} num [description]
- * @return {[type]}     [description]
- */
-function rightIn (parent) {
-	let inputNum = getNumb('inputNum');
-
-	var oChild = createEle(inputNum);
-	parent.appendChild(oChild);    // oParent在初始化函数中，可用
-	// alert("insertRight " + inputNum); 
-	
-	deleteItem(oChild, parent);   // 为每个添加的元素绑定删除事件
-}
-
-/**
- * 读取并删除队列左侧第一个元素，并显示元素的中的值
- */
-function leftOut (parent) {
-	var oLi = parent.getElementsByTagName('li');
-	if(!oLi.length) {
-		alert("没有可以移除的节点了")
+// 绑定事件的兼容方法
+function addEvent (ele, event, fn) {
+	if(ele.addEventListener) {
+		ele.addEventListener(event, fn, false);
+	} else if (ele.attachEvent) {
+		ele.attachEvent('on' + event, fn);
 	} else {
-		let num = oLi[0].innerText;
-		parent.removeChild(oLi[0]);
-		alert("deleteLeft " + num); 
+		ele['on' + event] = fn;
 	}
 }
 
-/**
- * 读取并删除队列右侧第一个元素，并显示元素的中的值
- */
-function rightOut (parent) {
-	var oLi = parent.getElementsByTagName('li');
-	if(!oLi.length) {
-		alert("没有可以移除的节点了")
-	} else {
-		let num = oLi[oLi.length - 1].innerText;
-		parent.removeChild(oLi[oLi.length - 1]);
-		alert("deleteLeft " + num); 
-	}
+// 数组中每个元素执行指定函数，并将数组索引作为元素的参数和元素作为参数
+function each (arr, fn) {
+	arr.forEach(function (ele, index) {
+		fn(ele, index);
+	})
 }
 
-/**
- * 在显示元素的容器上绑定删除子元素事件，利用事件代理
- * @return {[type]} [description]
- */
-function deleteItem (item, parent) {
-	item.addEventListener('click', function() {
-		let num = this.innerText;
-		parent.removeChild(this);      // 这里的this指向创建的节点对象
-		alert(num);
+window.onload = function () {
+	var Buttons = document.getElementsByTagName('button');
+	var container = $('container');
+
+	// 定义队列
+	var queue = {
+		result: [],     // 输入内容保存在数组中
+
+		leftPush: function (num) {   // 输入从左侧加入队列，然后渲染到页面
+			this.result.unshift(num);
+			this.render();
+		},
+
+		rightPush: function (num) {     //从右侧加入队列数组，然后渲染到页面
+			this.result.push(num);
+			this.render();
+		},
+
+		isEmpty: function () {          // 判断队列中是否为空
+			return (this.result.length === 0);
+		},
+
+		leftPop: function () {
+			if(this.isEmpty()) {
+				alert("the queue is already empty")
+			} else {
+				this.result.shift();
+				this.render();
+			}
+		},
+
+		rightPop: function () {
+			if(this.isEmpty()) {
+				alert("the queue is already empty")
+			} else {
+				this.result.pop();
+				this.render();
+			}
+		},
+
+		deleteId: function (id) {   // 使用splice()方法删除对应id的数据
+			this.result.splice(id, 1);    // 将对应位置的元素删除
+			this.render();
+		},
+
+		render: function () {
+			var str = '';
+			// 将数组中的所有元素渲染到页面中，拼接字符串
+			each(this.result, function (ele, index) {
+				str += '<span class="single" data-index=' + index + '>' + ele + '</span>';   // 增加一个data-index属性来标识每个元素
+			});
+			container.innerHTML = str;
+			// 为每个添加的span元素绑定删除事件
+			addSpanDelEvent();
+		}
+	}
+
+	function addSpanDelEvent () {
+		// 根据容器内span节点的个数来循环
+		var oSpans = container.getElementsByTagName('span');
+		// 
+		Array.prototype.forEach.call(oSpans, function(ele) {
+			addEvent(ele, 'click', function() {    // 根据队列中每个元素的索引来删除相应的元素
+				var index = parseInt(this.getAttribute('data-index'));   
+				queue.deleteId(index);
+			})
+		});
+	}
+
+
+	// 具体操作逻辑：为4个按钮绑定事件
+	addEvent(Buttons[0], 'click', function() {   // 左侧进入
+		var input = $('input-num').value;
+		if(/^[0-9]+$/.test(input)) {
+			queue.leftPush(input);
+		} else {
+			alert('Please enter an intreger!')
+		}
+	});
+
+	addEvent(Buttons[1], 'click', function() {
+		var input = $('input-num').value;
+		if(/^[0-9]+$/.test(input)) {
+			queue.rightPush(input);
+		} else {
+			alert('Please enter an intreger!')
+		}
+	});
+
+	addEvent(Buttons[2], 'click', function() {
+		queue.leftPop();
+	});
+
+	addEvent(Buttons[3], 'click', function() {
+		queue.rightPop();
 	});
 }
 
 
-function init() {
-	var oParent = document.getElementById('msg');   // 父元素节点在初始化函数中，可用
-
-	var leftInBtn = document.getElementById('leftIn');
-	var rightInBtn = document.getElementById('rightIn');
-	var leftOutBtn = document.getElementById('leftOut');
-	var rightOutBtn = document.getElementById('rightOut');
-
-	leftInBtn.addEventListener('click', function () {
-		leftIn(oParent);
-	}, false);
-	rightInBtn.addEventListener('click', function () {
-		rightIn(oParent)
-	}, false);
-	leftOutBtn.addEventListener('click', function () {
-		leftOut(oParent);
-	}, false);
-	rightOutBtn.addEventListener('click', function () {
-		rightOut(oParent);
-	}, false);
-
-	oParent.addEventListener('click', function () {
-		console.log(this);
-	});
-}
-
-init();
