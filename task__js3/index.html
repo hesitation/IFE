@@ -66,10 +66,12 @@
 			 * @return {[type]}            [description]
 			 */
 			function render (sortedData) {
+				var eNum = ['一','二','三','四','五','六','七']
+
 				sortedData.forEach(function (value, index) {
 					var des = document.getElementById('resort');
 					var oLi = document.createElement('li');
-					oLi.innerText = "第" + (index + 1) + '名：' + value[0] + '的空气质量：';
+					oLi.innerText = "第" + eNum[index] + '名：' + value[0] + '的空气质量：';
 
 					var oB = document.createElement('b');
 					oB.innerText = value[1];
@@ -86,7 +88,7 @@
 			function handler () {
 				var des = document.getElementById('resort');
 				des.innerHTML = '';   //点击前现将其内容清空
-				
+
 				var data = getData();
 				var sortedData = sortData(data);
 				render(sortedData);
