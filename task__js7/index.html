@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li {
+			list-style: none;
+			display: inline-block;
+			padding: 20px;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			margin-right: 20px;
+			border-radius: 50%;
+		}
+		#tag-container, #hobby-container {
+			height: 100px;
+			padding: 20px 10px
+		}
+		#tag-container li {
+			background: lightblue;
+		}
+		#hobby-container li {
+			background: lightcoral;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<label for="">Tag（以空格、逗号和回车作为结束）: <input id="inputContent" type="text" placeholder="hobby"></label>
+	</div>
+	<div id="tag-container"></div>
+
+	<div>
+		<div><textarea id="textareaContent" name="" id="" cols="30" rows="10">输入爱好，以空格换行逗号分隔</textarea></div>
+		<button id='btn'>确认兴趣爱好</button>
+	</div>
+	<div id="hobby-container"></div>
+
+	<script src='index.js'></script>
+</body>
+</html>
